@@ -59,6 +59,4 @@ Technologies used in the project:
 
 *   C++
 
-<h2>🛡️ License:</h2>
 
-This project is licensed under the
