@@ -8,12 +8,10 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://imgur.com/pPmqUxG.png" alt="project-screenshot" width="670" height="331/">
+<img src="https://imgur.com/0FFy1l5.png" alt="project-screenshot" width="1352" height="646/">
 
-<img src="https://imgur.com/1khUqbW.png" alt="project-screenshot" width="1344" height="113/">
 
-  
-  
+ 
 <h2>🧐 Features</h2>
 
 Here're some of the project's best features:
