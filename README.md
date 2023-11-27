@@ -46,6 +46,8 @@ chmod +x ShellPop
 ```
 ./ShellPop
 ```
+<h1>Alternative</h1>: 
+<p>Download the binary from <a href="https://github.com/EF3X0S/ShellPop/releases/tag/v1.0.0">release</a></p>
 
 <h2>🍰 Contribution Guidelines:</h2>
 
