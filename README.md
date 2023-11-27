@@ -1,6 +1,15 @@
 <h1 align="center" id="title">ShellPop</h1>
 
-<p align="center"><img src="https://socialify.git.ci/EF3X0S/ShellPop/image?description=1&amp;font=Source%20Code%20Pro&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Circuit%20Board&amp;theme=Dark" alt="project-image"></p>
+<p align="center">
+
+  _________ ___ ___         .__  .__ __________              
+ /   _____//   |   \   ____ |  | |  |\______   \____ ______  
+ \_____  \/    ~    \_/ __ \|  | |  | |     ___/  _ \\____ \ 
+ /        \    Y    /\  ___/|  |_|  |_|    |  (  <_> )  |_> >
+/_______  /\___|_  /  \___  >____/____/____|   \____/|   __/ 
+        \/       \/       \/                         |__|    
+
+</p>
 
 <p id="description">ShellPop is a lightweight and versatile reverse shell generator implemented entirely in C++. Designed to simplify the process of generating reverse shells ShellPop offers a straightforward and user-friendly interface for creating customized shells tailored to various scenarios.</p>
 
