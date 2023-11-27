@@ -20,6 +20,8 @@ Here're some of the project's best features:
 
 *   Ease of Use: With a minimalistic design ShellPop prioritizes simplicity and ease of use. Generate reverse shells quickly and efficiently with just a few simple commands.
 *   Flexibility: ShellPop supports a range of options allowing users to customize generated shells based on their specific requirements. Whether you need a Python Bash or other types of reverse shells ShellPop has you covered.
+*   Listener Integration: ShellPop includes an optional feature to start an inbuilt listener using Netcat. After generating a reverse shell, users have the option to initiate the listener directly from the program.
+*   
 
 <h2>🛠️ Installation Steps:</h2>
 
