@@ -8,9 +8,9 @@
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://imgur.com/pPmqUxG.png" alt="project-screenshot" width="1500" height="100/">
+<img src="https://imgur.com/pPmqUxG.png" alt="project-screenshot" width="1000" height="1000/">
 
-<img src="https://imgur.com/1khUqbW.png" alt="project-screenshot" width="1500" height="200/">
+<img src="https://imgur.com/1khUqbW.png" alt="project-screenshot" width="1000" height="1000/">
 
   
   
