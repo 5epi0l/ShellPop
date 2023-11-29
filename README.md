@@ -34,6 +34,12 @@ git clone https://github.com/EF3X0S/ShellPop.git
 ```
 cd ShellPop
 ```
+<p>4. Compile the binary:</p>
+
+```
+g++ shellPop.cpp -o ShellPop
+
+```
 
 <p>3. Provide Execution Permissions:</p>
 
