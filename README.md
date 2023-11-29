@@ -2,7 +2,7 @@
 
 <p align="center"><img src="https://i.imgur.com/z6MPqGL.png"></p>
 
-<p id="description">ShellPop is a lightweight and versatile reverse shell generator implemented entirely in C++. Designed to simplify the process of generating reverse shells ShellPop offers a straightforward and user-friendly interface for creating customized shells tailored to various scenarios.</p>
+<p id="description">ShellPop is a lightweight and versatile reverse shell generator and listener implemented entirely in C++. Designed to simplify the process of generating reverse shells ShellPop offers a straightforward and user-friendly interface for creating customized shells tailored to various scenarios.</p>
 
 <p align="center"><img src="https://img.shields.io/badge/C%2B%2B-red" alt="shields"><img src="https://img.shields.io/badge/v1.0.0-blue" alt="shields"><img src="https://img.shields.io/badge/Maintained%3F-yes-blue" alt="shields"><img src="https://img.shields.io/badge/Developed%20On-Manjaro-Red" alt="shields"></p>
 
