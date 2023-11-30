@@ -6,9 +6,6 @@
 
 <p align="center"><img src="https://img.shields.io/badge/C%2B%2B-red" alt="shields"><img src="https://img.shields.io/badge/v1.0.0-blue" alt="shields"><img src="https://img.shields.io/badge/Maintained%3F-yes-blue" alt="shields"><img src="https://img.shields.io/badge/Developed%20On-Manjaro-Red" alt="shields"></p>
 
-<h2>Project Screenshots:</h2>
-
-<img src="https://imgur.com/0FFy1l5.png" alt="project-screenshot" width="1352" height="647/">
 
 
  
