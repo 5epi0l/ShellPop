@@ -227,7 +227,7 @@ void printAsciiArt() {
         \/       \/       \/                         |__|
 
               A reverse shell generator and listener!
-              Made with <3 by EF3X0S.
+              Made with <3 by 5epi0l.
 
 
 
