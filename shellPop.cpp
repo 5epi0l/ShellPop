@@ -279,9 +279,6 @@ string nodejs_ssl(string ip, string port)
 
 void printAsciiArt() {
     string asciiArt = R"(
-
-
-
   _________ ___ ___         .__  .__ __________
  /   _____//   |   \   ____ |  | |  |\______   \____ ______
  \_____  \/    ~    \_/ __ \|  | |  | |     ___/  _ \\____ \
@@ -291,11 +288,7 @@ void printAsciiArt() {
 
               A reverse shell generator and listener!
               Made with <3 by 5epi0l.
+)";
 
-
-
-
-    )";
-
-    cout <<  RED << asciiArt << RESET << endl;
+    cout << RED << asciiArt << RESET << endl;
 }
