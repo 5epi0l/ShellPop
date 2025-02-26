@@ -64,4 +64,33 @@ Technologies used in the project:
 
 *   C++
 
+<h2>🔒 SSL/TLS Encrypted Shells</h2>
+
+ShellPop now supports SSL/TLS encrypted reverse shells for enhanced security. The following shells are available:
+* Python SSL
+* Ruby SSL
+* Node.js SSL
+
+To use SSL/TLS encrypted shells:
+
+<p>1. Generate a self-signed certificate (one-time setup):</p>
+
+```
+openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes
+```
+
+<p>2. For Python/Ruby shells, start the listener with:</p>
+
+```
+openssl s_server -quiet -key key.pem -cert cert.pem -port <PORT>
+```
+
+<p>3. For Node.js shells, use socat as the listener:</p>
+
+```
+socat openssl-listen:<PORT>,cert=cert.pem,verify=0 stdout
+```
+
+<p>4. Generate and use your SSL shell from ShellPop as normal, selecting one of the SSL options from the menu.</p>
+
 
